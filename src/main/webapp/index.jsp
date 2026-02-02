@@ -11,14 +11,8 @@
             crossorigin="anonymous"></script>
 </head>
 <body>
-
-<%
-    Integer counter = (Integer) application.getAttribute("counter");
-    if (counter == null) {
-        counter = 0;
-    }
-    application.setAttribute("counter", counter + 1);
-%>
+<jsp:useBean id="counter" class="com.uniovi.sdi.Counter" scope="application"/>
+<jsp:setProperty name="counter" property="increase" value="1"/>
 
 <!-- Barra de Navegación superior -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -37,7 +31,8 @@
             </li>
         </ul>
         <div class="text-white ms-auto">
-            <%=counter%> Visitas
+            <%-- <%=counter%> Visitas --%>
+            <jsp:getProperty name="counter" property="total"/> Visitas
         </div>
     </div>
 </nav>
